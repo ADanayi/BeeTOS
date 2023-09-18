@@ -29,12 +29,12 @@ namespace B
 
             ~Timeout();
 
-            RunStateT state();
+            RunStateT state() const;
             void restart(unsigned long timeout_ms = -1);
             void cancel();
-            bool scheduled();
-            bool finished();
-            virtual void toggle();
+            bool scheduled() const;
+            bool finished() const;
+            unsigned long period_ms() const;
             // void delay(unsigned long ms);
 
             operator bool() const;
@@ -49,8 +49,8 @@ namespace B
 
             static Timeout *_first();
             static Timeout *_last();
-            Timeout *_next();
-            Timeout *_prev();
+            Timeout *_next() const;
+            Timeout *_prev() const;
 
             virtual void _on_executing(){};
             virtual void _on_executed(){};

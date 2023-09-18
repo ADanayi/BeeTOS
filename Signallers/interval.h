@@ -19,7 +19,14 @@ namespace B
         class Interval : public Timeout
         {
         public:
-            Interval(unsigned long int interval, Core *core = nullptr) : Timeout{interval, core} {}
+            Interval(unsigned long int interval_ms = -1, Core *core = nullptr) : Timeout{interval_ms, core} {}
+
+            void toggle()
+            {
+                if (this->finished())
+                    return this->restart(-1);
+                return this->cancel();
+            }
 
         protected:
             virtual void _on_executed() override

@@ -39,7 +39,7 @@ namespace B
             restart();
         }
 
-        RunStateT Timeout::state()
+        RunStateT Timeout::state() const
         {
             return __state;
         }
@@ -83,26 +83,24 @@ namespace B
         //     _core->delay(ms);
         // }
 
+        unsigned long Timeout::period_ms() const
+        {
+            return _timeout_ms;
+        }
+
         Timeout::operator bool() const
         {
             return this->__state != RunStateT::finished;
         }
 
-        bool Timeout::scheduled()
+        bool Timeout::scheduled() const
         {
             return this->__state != RunStateT::finished;
         }
 
-        bool Timeout::finished()
+        bool Timeout::finished() const
         {
             return this->__state == RunStateT::finished;
-        }
-
-        void Timeout::toggle()
-        {
-            if (this->finished())
-                return this->restart(-1);
-            return this->cancel();
         }
 
         void Timeout::restart(unsigned long timeout_ms)
@@ -129,11 +127,11 @@ namespace B
         {
             return __last;
         }
-        Timeout *Timeout::_next()
+        Timeout *Timeout::_next() const
         {
             return __next;
         }
-        Timeout *Timeout::_prev()
+        Timeout *Timeout::_prev() const
         {
             return __prev;
         }

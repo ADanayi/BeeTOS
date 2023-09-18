@@ -24,9 +24,12 @@ namespace B
             {
                 this->_timeout_ms = timeout_ms;
             }
-            virtual void toggle() override
+
+            void toggle()
             {
-                Timeout::toggle();
+                if (this->finished())
+                    return this->restart(-1);
+                return this->cancel();
             }
 
         protected:

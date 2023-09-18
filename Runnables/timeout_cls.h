@@ -34,7 +34,7 @@ namespace B
             void cancel();
             bool scheduled();
             bool finished();
-            void toggle_working_state();
+            virtual void toggle();
             // void delay(unsigned long ms);
 
             operator bool() const;

@@ -98,7 +98,7 @@ namespace B
             return this->__state == RunStateT::finished;
         }
 
-        void Timeout::toggle_working_state()
+        void Timeout::toggle()
         {
             if (this->finished())
                 return this->restart(-1);
